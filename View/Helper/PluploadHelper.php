@@ -20,6 +20,7 @@ class PluploadHelper extends AppHelper {
  *     - maxFileSize integer Max file size (in MB) (optional, DEFAULT: 2)
  *     - maxNumberOfFiles integer Max number of files allowed
  *     - acceptFileTypes array List of allowed file extensions
+ *     - url string URL to handle the upload
  *     - onFileUploaded string Javascript for what to do on completion
  *                             This string is put inside a callback function
  *                             with access to the following attributes:
@@ -65,11 +66,7 @@ class PluploadHelper extends AppHelper {
 			'flash_swf_url' => '/js/libs/plupload/plupload.flash.swf',
 			'runtimes' => implode(',', array('gears', 'html5', 'flash', 'silverlight', 'browserplus')),
 			'silverlight_xap_url' => '/js/libs/plupload/plupload.silverlight.xap',
-			'url' => $this->Html->url(array(
-				'controller' => 'uploads',
-				'action' => 'add',
-				'mgr' => true
-			)),
+			'url' => '/uploads/upload',
 			'urlParams' => false
 		);
 
@@ -88,6 +85,11 @@ class PluploadHelper extends AppHelper {
 			$fileUploadSettings['filters'] = array(
 				array('title' => 'Files', 'extensions' => implode(',', $opts['acceptFileTypes']))
 			);
+		}
+
+		// URL to upload to
+		if (!empty($opts['url'])) {
+			$fileUploadSettings['url'] = $opts['url'];
 		}
 
 		// Thumbnail
