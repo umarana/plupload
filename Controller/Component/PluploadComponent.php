@@ -135,7 +135,7 @@ class PluploadComponent extends Component {
 
 			closedir($dir);
 		} else {
-			throw Exception('Failed to open temp directory.', 100);
+			throw new Exception('Failed to open temp directory.', 100);
 		}
 
 		// Look for the content type header
@@ -160,16 +160,16 @@ class PluploadComponent extends Component {
 							fwrite($out, $buff);
 						}
 					} else {
-						throw Exception('Failed to open input stream.', 101);
+						throw new Exception('Failed to open input stream.', 101);
 					}
 					fclose($in);
 					fclose($out);
 					@unlink($_FILES['file']['tmp_name']);
 				} else {
-					throw Exception('Failed to open output stream.', 102);
+					throw new Exception('Failed to open output stream.', 102);
 				}
 			} else {
-				throw Exception('Failed to move uploaded file.', 103);
+				throw new Exception('Failed to move uploaded file.', 103);
 			}
 		} else {
 			// Open temp file
@@ -183,12 +183,12 @@ class PluploadComponent extends Component {
 						fwrite($out, $buff);
 					}
 				} else {
-					throw Exception('Failed to open input stream.', 101);
+					throw new Exception('Failed to open input stream.', 101);
 				}
 				fclose($in);
 				fclose($out);
 			} else {
-				throw Exception('Failed to open output stream.', 102);
+				throw new Exception('Failed to open output stream.', 102);
 			}
 		}
 
