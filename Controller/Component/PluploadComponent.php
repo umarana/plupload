@@ -91,9 +91,9 @@ class PluploadComponent extends Component {
 		@set_time_limit(5 * MINUTE);
 
 		// Get parameters
-		$chunk      = isset($this->request->query['chunk']) ? intval($this->request->query['chunk']) : 0;
-		$chunks     = isset($this->request->query['chunks']) ? intval($this->request->query['chunks']) : 0;
-		$fileName   = isset($this->request->query['name']) ? $this->request->query['name'] : '';
+		$chunk      = isset($this->request->data['chunk']) ? intval($this->request->data['chunk']) : 0;
+		$chunks     = isset($this->request->data['chunks']) ? intval($this->request->data['chunks']) : 0;
+		$fileName   = isset($this->request->data['name']) ? $this->request->data['name'] : '';
 
 		// Clean the fileName for security reasons
 		$fileName   = preg_replace('/[^\w\._]+/', '_', $fileName);
