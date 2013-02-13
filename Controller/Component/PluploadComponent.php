@@ -76,6 +76,7 @@ class PluploadComponent extends Component {
 /**
  * Upload file
  *
+ * @param targetDirOverride (string) Optional override of default target directory.
  * @return array|false False if successfully uploaded a chunk. Array if successfully finished uploading file.
  * - name (string) Original filename
  * - basename (string) Unique filename that file was saved as
@@ -84,7 +85,7 @@ class PluploadComponent extends Component {
  * - size (integer) File size
  * @exception Throws code and message if there is an error uploading the file
  */
-	public function upload() {
+	public function upload($targetDirOverride = null) {
 		$this->controller->disableCache();
 
 		// Max execution time (per chunk)
@@ -104,9 +105,13 @@ class PluploadComponent extends Component {
 		$fileType   = $this->getFiletypeCode($ext);
 
 		// Define output filepath
-		$targetDir  = $this->settings['targetDir'];
-		$targetDir .= DS . $fileType;
-		$targetDir .= DS . 'original';
+		if (!$targetDirOverride){
+			$targetDir  = $this->settings['targetDir'];
+			$targetDir .= DS . $fileType;
+			$targetDir .= DS . 'original';
+		} else {
+			$targetDir = $targetDirOverride;
+		}
 		$uniqid     = uniqid();
 		$output     = $targetDir . DS . $uniqid . '.' . $ext;
 
