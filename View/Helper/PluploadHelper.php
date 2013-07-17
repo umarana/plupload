@@ -153,7 +153,7 @@ class PluploadHelper extends AppHelper {
 		$this->Html->scriptEnd();
 
 		return <<<END
-		<div id="{$id}" class="uploader<?php echo $thumb; ?>">
+		<div id="{$id}" class="uploader{$thumb}">
 			<div class="row-fluid">
 				<div class="span7">
 					<a id="{$id}-pickfiles" class="btn btn-success"><i class="icon-plus icon-white"></i> <span>{$opts['buttonName']}&hellip;</span></a>
