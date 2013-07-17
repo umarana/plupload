@@ -63,9 +63,9 @@ class PluploadHelper extends AppHelper {
 			'chunk_size' => '2mb',
 			'container' => $id,
 			'existingFiles' => false,
-			'flash_swf_url' => '/js/libs/plupload/plupload.flash.swf',
+			'flash_swf_url' => '/plupload/js/libs/plupload/plupload.flash.swf',
 			'runtimes' => implode(',', array('gears', 'html5', 'flash', 'silverlight', 'browserplus')),
-			'silverlight_xap_url' => '/js/libs/plupload/plupload.silverlight.xap',
+			'silverlight_xap_url' => '/plupload/js/libs/plupload/plupload.silverlight.xap',
 			'url' => '/uploads/upload',
 			'urlParams' => false
 		);
@@ -93,6 +93,11 @@ class PluploadHelper extends AppHelper {
 		}
 
 		// Thumbnail
+		$thumb = null;
+		if (isset($opts['thumb']) && (isset($opts['thumb']['width'])) && (isset($opts['thumb']['height']))) {
+			$thumb = ' ' . $id . '-thumb';
+		}
+
 		if (isset($opts['thumb']) && (isset($opts['thumb']['width']))) {
 			$thumbWidth = (integer) $opts['thumb']['width'];
 		} else {
@@ -148,7 +153,7 @@ class PluploadHelper extends AppHelper {
 		$this->Html->scriptEnd();
 
 		return <<<END
-		<div id="{$id}" class="uploader">
+		<div id="{$id}" class="uploader<?php echo $thumb; ?>">
 			<div class="row-fluid">
 				<div class="span7">
 					<a id="{$id}-pickfiles" class="btn btn-success"><i class="icon-plus icon-white"></i> <span>{$opts['buttonName']}&hellip;</span></a>

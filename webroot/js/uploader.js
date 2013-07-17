@@ -86,7 +86,7 @@ var initializeUploader = function(id) {
 		}
 
 		// Start uploading file
-		setTimeout(function() { uploader[id].start(); }, 0);
+		setTimeout(function() { uploader[id].start(); }, 10);
 	});
 
 
@@ -120,8 +120,7 @@ var initializeUploader = function(id) {
 		$('#' + id + '-progress').removeClass('progress-info active');
 		if (response.status == 'ok') {
 			$('#' + id + '-progress').addClass('progress-success');
-
-			$('#' + file.id).prepend('<img src="' + response.data.thumbnail_url + '">');
+			$('.' + id + '-thumb' + ' #' + file.id).prepend('<img src="' + response.data.thumbnail_url + '">');
 		} else {
 			$('#' + id + '-progress').addClass('progress-error');
 		}
