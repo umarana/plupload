@@ -126,7 +126,6 @@ var initializeUploader = function(id) {
 		$('#' + id + '-progress').removeClass('progress-info active');
 		if (response.status == 'ok') {
 			$('#' + id + '-progress').addClass('progress-success');
-			alert(info);
 			$('.' + id + '-thumb' + ' #' + file.id).prepend('<img src="' + response.data.thumbnail_url + '">');
 		} else {
 			$('#' + id + '-progress').addClass('progress-error');
