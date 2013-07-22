@@ -126,13 +126,7 @@ var initializeUploader = function(id) {
 		$('#' + id + '-progress').removeClass('progress-info active');
 		if (response.status == 'ok') {
 			$('#' + id + '-progress').addClass('progress-success');
-			$('.uploader #' + file.id).append(' [<a class="delete-additional" additional_id="' + response.data.id + '" href="javascript:void(0)">x</a>]');
 			$('.' + id + '-thumb' + ' #' + file.id).prepend('<img src="' + response.data.thumbnail_url + '">');
-			$('.delete-additional').bind('click', function() {
-				var id = $(this).attr('additional_id');
-				$('input.' + id).remove();
-				$('.uploader #' + file.id).remove();
-			});
 		} else {
 			$('#' + id + '-progress').addClass('progress-error');
 		}
