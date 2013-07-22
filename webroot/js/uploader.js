@@ -113,6 +113,12 @@ var initializeUploader = function(id) {
 		$('#' + id + '-progressbar').width(file.percent + '%');
 	});
 
+	// Error
+	uploader[id].bind('Error', function(up, err) {
+		alert(err.message + ' Please upload the correct file type for ' + err.file.name + '.');
+		$('.uploader #' + err.file.id).remove();
+	});
+
 	// On file uploaded
 	uploader[id].bind('FileUploaded', function(up, file, info) {
 		var response = jQuery.parseJSON(info.response);
@@ -120,6 +126,7 @@ var initializeUploader = function(id) {
 		$('#' + id + '-progress').removeClass('progress-info active');
 		if (response.status == 'ok') {
 			$('#' + id + '-progress').addClass('progress-success');
+			alert(info);
 			$('.' + id + '-thumb' + ' #' + file.id).prepend('<img src="' + response.data.thumbnail_url + '">');
 		} else {
 			$('#' + id + '-progress').addClass('progress-error');

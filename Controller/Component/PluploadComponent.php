@@ -10,6 +10,9 @@ class PluploadComponent extends Component {
 	public $allowedTypes = array(
 		'doc' => array(
 			'pdf',
+			'doc',
+			'docx',
+			'rtf'
 		),
 		'img' => array(
 			'gif',
